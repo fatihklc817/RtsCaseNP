@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c5ebc7af4a1c604f8cc3a77ad928368, type: 3}
-  m_Name: tank
+  m_Script: {fileID: 11500000, guid: cceb281dd6c53d44b886fdeacb312bff, type: 3}
+  m_Name: bikeBullet
   m_EditorClassIdentifier: 
-  Health: 900
-  Speed: 7
-  FireRate: 1.5
-  Range: 30
+  BulletPrefab: {fileID: 5211398583298974866, guid: ccdd6e8f0da2cf1408df11e1aa9500a7, type: 3}
+  Damage: 5
+  BulletSpeed: 15

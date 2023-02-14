@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 1820143801061159710}
   - component: {fileID: 1469844072691898004}
   - component: {fileID: 3069736832222094241}
-  - component: {fileID: 5383476204679039046}
+  - component: {fileID: 2241621342427593367}
   m_Layer: 6
   m_Name: tank (1)
   m_TagString: Untagged
@@ -234,7 +234,7 @@ MonoBehaviour:
   _bulletSpawnPoint: {fileID: 5840759563974040625}
   _bulletData: {fileID: 11400000, guid: 34ac3732fe4fa55428bd1da4261f0da6, type: 2}
   _objectData: {fileID: 1469844072691898004}
---- !u!114 &5383476204679039046
+--- !u!114 &2241621342427593367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,10 +243,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7281588208219798065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1454fd9d625f94e8720de573d83e87, type: 3}
+  m_Script: {fileID: 11500000, guid: fa85b6a806fa23449b4022ded76f2b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootingBehaviour: {fileID: 3069736832222094241}
 --- !u!1001 &2401111356756750094
 PrefabInstance:
   m_ObjectHideFlags: 0
