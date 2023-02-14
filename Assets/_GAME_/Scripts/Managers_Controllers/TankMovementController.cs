@@ -5,10 +5,13 @@ using UnityEngine;
 using DG.Tweening;
 
 
-public class TankMovementController : MonoBehaviour, IMovementController
+public class TankMovementController : MonoBehaviour, IMovementController 
 {
+    [SerializeField] private ShootingBehaviour _shootingBehaviour;
+    
     private ObjectData _objData;
     private Vector3 _targetPointPosition;
+    private Transform _targetTransform;
     private bool _isTargetBuilding;
     private int  _selectableObjectLayerIndex;
     private bool _isObjectSelected;
@@ -32,11 +35,12 @@ public class TankMovementController : MonoBehaviour, IMovementController
         if (_isObjectSelected)
         {
             _isTweening = true;
+            _isMoving = false;
             transform.DOLookAt(_targetPointPosition, 1f).OnComplete(() =>
             {
                 if (_isTargetInRange)
                 {
-                    Debug.Log("gitmeden sıkıyomm");
+                    _shootingBehaviour.Shoot(_targetTransform);
                 }
                 else if (!_isTargetInRange)
                 {
@@ -61,16 +65,21 @@ public class TankMovementController : MonoBehaviour, IMovementController
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
+                    
                     Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green, 2f);
                     if (hit.transform.gameObject.layer == _selectableObjectLayerIndex)
                     {
                         _isObjectSelected = false;
                         return;
                     }
+                    else
+                    {
+                        _shootingBehaviour.StopShooting();
+                    }
 
                     if (_isTweening)
                     {
-                        DOTween.KillAll();
+                        transform.DOKill();
                     }
 
                     _targetPointPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
@@ -78,6 +87,7 @@ public class TankMovementController : MonoBehaviour, IMovementController
                     if (hit.transform.CompareTag("EnemyBuilding"))
                     {
                         _isTargetBuilding = true;
+                        _targetTransform = hit.transform;
                     }
                     else
                     {
@@ -99,9 +109,10 @@ public class TankMovementController : MonoBehaviour, IMovementController
                 
                 if (_isMoving && _isTargetInRange)
                 {
-                    DOTween.KillAll();
+                    transform.DOKill();
                     _isMoving = false;
-                    Debug.Log("geldim sıkıyorum");
+                    _shootingBehaviour.Shoot(_targetTransform);
+                    
                 }
             }
 
@@ -112,3 +123,4 @@ public class TankMovementController : MonoBehaviour, IMovementController
     
     
 }
+
