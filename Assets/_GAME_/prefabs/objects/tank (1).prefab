@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 8110940973887700791}
   - component: {fileID: 1820143801061159710}
   - component: {fileID: 1469844072691898004}
-  - component: {fileID: 3069736832222094241}
   - component: {fileID: 2241621342427593367}
+  - component: {fileID: 529757346637640289}
   m_Layer: 6
   m_Name: tank (1)
   m_TagString: Untagged
@@ -93,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 7281588208219798065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.44, y: 0.5, z: 1.4793999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 3492075119947594627}
   - {fileID: 5840759563974040625}
@@ -219,21 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectsData: {fileID: 11400000, guid: e0eed8d24aa91884baaca6f140bf5871, type: 2}
---- !u!114 &3069736832222094241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7281588208219798065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2d66e94e651c014db26738d1498dc0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulletSpawnPoint: {fileID: 5840759563974040625}
-  _bulletData: {fileID: 11400000, guid: 34ac3732fe4fa55428bd1da4261f0da6, type: 2}
-  _objectData: {fileID: 1469844072691898004}
 --- !u!114 &2241621342427593367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +231,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa85b6a806fa23449b4022ded76f2b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &529757346637640289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281588208219798065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f86b3ce6e6c04499c08e6e05f623b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletSpawnPoint: {fileID: 5840759563974040625}
+  _bulletData: {fileID: 11400000, guid: 34ac3732fe4fa55428bd1da4261f0da6, type: 2}
 --- !u!1001 &2401111356756750094
 PrefabInstance:
   m_ObjectHideFlags: 0

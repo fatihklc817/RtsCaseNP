@@ -4,17 +4,22 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class ShootingBehaviour : MonoBehaviour
+public abstract class ShootingBehaviour : MonoBehaviour, IShooting
 {
-    [SerializeField] private Transform _bulletSpawnPoint;
-    [SerializeField] private BulletDataSO _bulletData;
+    [SerializeField] protected Transform _bulletSpawnPoint;
+    [SerializeField] protected BulletDataSO _bulletData;
+    
+    protected ObjectData _objectData;
 
-    [SerializeField] private ObjectData _objectData;
+    protected Transform _targetTransform;
 
-    private Transform _targetTransform;
+    protected bool _isShootingStarted;
+    protected float _nextFireTime = 0f;
 
-    private bool _isShootingStarted;
-    private float _nextFireTime = 0f;
+    private void Start()
+    {
+        _objectData = GetComponent<ObjectData>();
+    }
 
     public void Shoot(Transform targetTransform)
     {
@@ -27,39 +32,5 @@ public class ShootingBehaviour : MonoBehaviour
         _isShootingStarted = false;
     }
 
-    private void Update()
-    {
-        if (_isShootingStarted && Time.time > _nextFireTime)
-        {
-            BuildingData targetData;
-            if (_targetTransform == null)
-            {
-                StopShooting();
-                return;
-            }
-            else
-            {
-                targetData = _targetTransform.GetComponent<BuildingData>();
-            }
-
-            if (targetData.Health <= 0)
-            {
-                StopShooting();
-                return;
-            }
-            _nextFireTime = Time.time + _objectData.ObjectsData.FireRate;
-            var bullet = Instantiate(_bulletData.BulletPrefab, _bulletSpawnPoint.position, Quaternion.identity);
-            var position = _targetTransform.position;
-            bullet.transform.LookAt(position);
-            bullet.transform.DOMove(position, _bulletData.BulletSpeed).SetEase(Ease.Linear).SetId("shooting").SetSpeedBased(true).OnComplete((() =>
-            {
-                if (targetData != null)
-                {
-                    targetData.DecreaseHealth(_bulletData.Damage);
-                    
-                }
-                Destroy(bullet.gameObject);
-            }));
-        }
-    }
+    public abstract void Update();
 }
